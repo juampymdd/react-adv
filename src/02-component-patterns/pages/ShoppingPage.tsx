@@ -2,6 +2,7 @@ import { ProductCard, ProductImage, ProductButtons, ProductTitle } from '../comp
 
 import '../styles/custom-styles.css';
 import { useShoppingCart } from '../hooks/useShoppingCart';
+import { products } from '../data/products';
 
 
 
@@ -9,7 +10,7 @@ import { useShoppingCart } from '../hooks/useShoppingCart';
 
 export const ShoppingPage = () => {
 
-    const {products, onProductCountChange, shoppingCart} = useShoppingCart();
+    const {onProductCountChange, shoppingCart} = useShoppingCart();
     
 
     return (

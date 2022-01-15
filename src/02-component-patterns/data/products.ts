@@ -1,4 +1,4 @@
-import { Product } from "../interfaces/iterfaces"
+import { Product } from "../interfaces/interfaces"
 
 const product1 = {
     id: '1',
