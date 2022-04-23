@@ -1,32 +1,61 @@
+import { useState } from "react"
 import { BrowserRouter } from "react-router-dom"
 import {Routes, Route, NavLink, Navigate} from 'react-router-dom'
+import { Mesas } from "../pages/Mesas"
+import logo from '../logo-sin-fondo.png'
+import { Nav, Navbar,NavDropdown,Container } from "react-bootstrap"
 
-import logo from '../logo.svg'
 export const Navigation = () => {
+    const [colapse, setColapse] = useState(false)
+
+    const clickColapse = ()=> {
+        setColapse(!colapse)
+    }
+
     return (
         <BrowserRouter>
-            <div className="main-layout">
-                <nav>
-                    <img src={ logo } alt="React Logo" />
-                    <ul>
-                        <li>
-                            <NavLink to="/home" className={ ({isActive})=> isActive ? 'nav-active' : '' }>Home</NavLink>
-                        </li>
-                        <li>
-                            <NavLink to="/about" className={ ({isActive})=> isActive ? 'nav-active' : '' }>About</NavLink>
-                        </li>
-                        <li>
-                            <NavLink to="/users" className={ ({isActive})=> isActive ? 'nav-active' : '' }>Users</NavLink>
-                        </li>
-                    </ul>
-                </nav>
+            <nav className="navbar navbar-expand-lg navbar-light bg-light">
+                <div className="container-fluid">
+                    <a className="navbar-brand" href="#"><img src={logo} alt="logo" style={{width:'100px',height:'80px'}}/></a>
+                    <button 
+                        type="button" 
+                        className="navbar-toggler" 
+                        onClick={clickColapse} 
+                        data-bs-toggle="collapse" 
+                        data-bs-target="#navbarColor03" 
+                        aria-controls="navbarColor03" 
+                        aria-expanded="true" 
+                        aria-label="Toggle navigation"
+                    >
+                        <span className="navbar-toggler-icon"></span>
+                    </button>
+
+                    <div className={`navbar-collapse collapse ${colapse ? 'show': ''} justify-content-center`} id="navbarColor03">
+                        <ul className="navbar-nav me-auto text-center">
+                            <li className="nav-item">
+                                <NavLink to="/mesas" className={ ({isActive})=> isActive ? 'active nav-link' : 'nav-link' }>Mesas</NavLink>
+                            </li>
+                            <li className="nav-item">
+                                <NavLink to="/pedidos" className={ ({isActive})=> isActive ? 'active nav-link' : 'nav-link' }>Pedidos</NavLink>
+                            </li>
+                            <li className="nav-item">
+                                <NavLink to="/mozos" className={ ({isActive})=> isActive ? 'active nav-link' : 'nav-link' }>Mozos</NavLink>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+            
+            <div>
                 <Routes>
-                    <Route path="about" element= {<h1>About Page</h1>}/>
-                    <Route path="users" element= {<h1>Users Page</h1>}/>
-                    <Route path="home" element= {<h1>Home Page</h1>}/>
-                    <Route path="*" element ={<Navigate to="/home" replace/>}/>
+                    <Route path="mesas" element= {<Mesas/>}/>
+                    <Route path="pedidos" element= {<h1>pedidos</h1>}/>
+                    <Route path="mozos" element= {<h1>mozos</h1>}/>
+                    <Route path="*" element ={<Navigate to="/mesas" replace/>}/>
                 </Routes>
             </div>
+
+            
         </BrowserRouter>
     )
 }
